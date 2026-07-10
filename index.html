@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatTheFan — El mini ventilador que te hará decir WTF</title>
+<meta name="description" content="WhatTheFan: el mini ventilador de mano recargable que suelta aire de verdad. Potente, plegable 3-en-1, batería para horas. Envío 7-15 días · Garantía 30 días.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rubik:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cyan:#22d3ee;--teal:#0891b2;--teal-d:#0e6f86;--ink:#0a1622;--ink-2:#33505c;
+  --coral:#ff5a3c;--coral-d:#f0421f;--lime:#c6f24e;--paper:#f4fbfd;--line:#e2eef2;
+  --shadow:0 20px 55px rgba(10,22,34,.10);--r:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Manrope',system-ui,sans-serif;color:var(--ink);background:#fff;overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.rk{font-family:'Rubik',sans-serif;line-height:1.03;margin:0;letter-spacing:-.02em}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;cursor:pointer;border:none;font-family:'Rubik',sans-serif;font-weight:700;border-radius:999px;padding:1.05rem 2.1rem;font-size:1rem;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn-cta{background:linear-gradient(135deg,var(--coral),var(--coral-d));color:#fff;box-shadow:0 12px 28px rgba(240,66,31,.4)}
+.btn-cta:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 18px 40px rgba(240,66,31,.5)}
+.btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.5);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.24)}
+.btn-ghost.dark{background:#fff;color:var(--ink);border-color:var(--line)}.btn-ghost.dark:hover{border-color:var(--teal);color:var(--teal)}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:'Rubik';font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.stars{color:#ffb703;letter-spacing:1px}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+.sec{padding:clamp(56px,8vw,110px) 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 3rem}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:800}
+.sec-head p{color:var(--ink-2);font-size:1.08rem;font-weight:500;margin-top:.7rem}
+
+/* progress bar */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--coral));z-index:90;width:0}
+
+/* ANNOUNCE */
+.announce{background:var(--ink);color:#cfeef6;overflow:hidden;font-family:'Rubik';font-weight:600;font-size:.8rem;letter-spacing:.05em;padding:.55rem 0;position:relative;z-index:61}
+.announce__t{display:flex;gap:2.8rem;white-space:nowrap;width:max-content;animation:scroll 26s linear infinite}
+.announce__t span{display:inline-flex;gap:.5rem;align-items:center}
+.d{width:5px;height:5px;border-radius:50%;background:var(--cyan)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* NAV (transparent over hero) */
+.nav{position:fixed;top:31px;left:0;right:0;z-index:60;transition:background .3s,box-shadow .3s,border-color .3s,top .3s}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.55rem;font-family:'Rubik';font-weight:800;font-size:1.3rem;color:#fff;transition:color .3s}
+.logo .mono{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#fff;color:var(--ink);font-size:.8rem;letter-spacing:-.04em;transition:background .3s,color .3s}
+.logo b{color:var(--cyan);transition:color .3s}
+.nav__links{display:flex;gap:1.7rem;font-weight:700;font-size:.94rem}
+.nav__links a{color:rgba(255,255,255,.85);transition:color .2s}.nav__links a:hover{color:#fff}
+.nav .btn{padding:.6rem 1.3rem;font-size:.9rem}
+.nav.scrolled{background:rgba(255,255,255,.9);backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(10,22,34,.08);top:0}
+.nav.scrolled .logo{color:var(--ink)}.nav.scrolled .logo .mono{background:var(--ink);color:var(--lime)}.nav.scrolled .logo b{color:var(--teal)}
+.nav.scrolled .nav__links a{color:var(--ink-2)}.nav.scrolled .nav__links a:hover{color:var(--teal)}
+@media(max-width:860px){.nav__links{display:none}}
+
+/* HERO VIDEO */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:#fff}
+.hero__vid{position:absolute;inset:0;z-index:0}
+.hero__vid video{width:100%;height:100%;object-fit:cover}
+.hero__vid::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,14,22,.82) 0%,rgba(6,14,22,.5) 45%,rgba(10,60,80,.35) 100%),linear-gradient(0deg,rgba(6,14,22,.6),transparent 55%)}
+.hero__grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%;padding:120px 0 70px}
+.hero__rate{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;font-size:.9rem;margin-bottom:1.1rem;opacity:.95}
+.hero h1{font-size:clamp(2.8rem,6.2vw,4.9rem);font-weight:900;text-shadow:0 4px 30px rgba(0,0,0,.3)}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero__sub{font-size:clamp(1.06rem,1.6vw,1.28rem);max-width:46ch;font-weight:500;margin:1.2rem 0 1.9rem;opacity:.96}
+.hero__ctas{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.hero__mini{display:flex;gap:1.3rem;flex-wrap:wrap;margin-top:1.4rem;font-size:.85rem;font-weight:700;opacity:.95}
+.hero__mini span{display:inline-flex;gap:.4rem;align-items:center}.hero__mini svg{width:16px;height:16px;color:var(--cyan)}
+.hero__media{position:relative;display:flex;justify-content:center}
+.hero__media img{width:min(78%,360px);filter:drop-shadow(0 40px 50px rgba(0,0,0,.5));animation:float 5s ease-in-out infinite}
+.badge{position:absolute;z-index:3;top:0;right:12%;width:82px;height:82px;border-radius:50%;background:var(--coral);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Rubik';font-weight:900;transform:rotate(10deg);box-shadow:0 10px 24px rgba(240,66,31,.5)}
+.badge span:first-child{font-size:1.35rem;line-height:1}.badge span:last-child{font-size:.5rem;letter-spacing:.1em}
+.chip{position:absolute;z-index:3;background:rgba(255,255,255,.95);color:var(--ink);border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.25);padding:.55rem .85rem;font-weight:800;font-size:.8rem;display:flex;align-items:center;gap:.45rem}
+.chip.c1{top:16%;left:-4%;animation:float 5.5s ease-in-out infinite}
+.chip.c2{bottom:16%;right:-2%;animation:float 6s ease-in-out infinite reverse}
+.chip .em{color:#16a34a}
+.scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;width:24px;height:38px;border:1.5px solid rgba(255,255,255,.6);border-radius:14px}
+.scroll-cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:2px;background:#fff;transform:translateX(-50%);animation:cue 1.7s ease-in-out infinite}
+@keyframes cue{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@media(max-width:860px){.hero__grid{grid-template-columns:1fr;text-align:center}.hero__sub{margin-inline:auto}.hero__ctas,.hero__mini{justify-content:center}.hero__media{order:-1;margin-bottom:1rem}}
+
+/* TRUSTBAR */
+.trustbar{border-bottom:1px solid var(--line);background:#fff}
+.trustbar__in{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem;padding:1.5rem 0;text-align:center}
+.trustbar__it b{font-family:'Rubik';font-size:1.4rem;display:block}
+.trustbar__it small{color:var(--ink-2);font-weight:700;font-size:.76rem;letter-spacing:.03em}
+
+/* BENEFITS */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.9rem 1.5rem;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.card__ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--cyan),var(--teal));color:#fff;margin-bottom:1rem}
+.card__ic svg{width:26px;height:26px}
+.card h3{font-size:1.16rem;font-weight:700;margin-bottom:.35rem}.card p{color:var(--ink-2);font-weight:500;font-size:.94rem;margin:0}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}}
+
+/* DEEP DIVE */
+.dive{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.dive.rev .dive__media{order:2}
+.dive__media{border-radius:26px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow);aspect-ratio:4/3}
+.dive__media img{width:100%;height:100%;object-fit:cover}
+.dive h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:800;margin-bottom:1rem}
+.dive .feat{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:.9rem}
+.dive .feat svg{flex-shrink:0;width:24px;height:24px;color:var(--teal);margin-top:2px}
+.dive .feat b{font-weight:800}.dive .feat p{margin:.1rem 0 0;color:var(--ink-2);font-weight:500;font-size:.95rem}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs img{width:70px;height:70px;object-fit:cover;border-radius:12px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.thumbs img:hover{transform:translateY(-3px)}.thumbs img.active{border-color:var(--teal)}
+@media(max-width:820px){.dive{grid-template-columns:1fr;gap:28px}.dive.rev .dive__media{order:0}}
+
+/* PARALLAX BAND */
+.band{position:relative;overflow:hidden;color:#fff;text-align:center}
+.band__vid{position:absolute;inset:0;z-index:0}
+.band__vid video{width:100%;height:100%;object-fit:cover}
+.band__vid::after{content:"";position:absolute;inset:0;background:rgba(8,30,42,.62)}
+.band__in{position:relative;z-index:2;padding:clamp(80px,12vw,150px) 22px}
+.band h2{font-size:clamp(2.2rem,6vw,4rem);font-weight:900;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.band p{font-size:1.15rem;font-weight:600;opacity:.95;margin:1rem auto 0;max-width:40ch}
+
+/* MODELS */
+.models{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.model{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:pointer}
+.model:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.model__img{aspect-ratio:1;background:var(--paper);overflow:hidden}
+.model__img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.model:hover .model__img img{transform:scale(1.06)}
+.model__b{padding:1.1rem 1.2rem}
+.model__b .tag{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.model__b h3{font-size:1.05rem;font-weight:800;margin:.2rem 0 .3rem}
+.model__b .mdesc{color:var(--ink-2);font-weight:600;font-size:.84rem;margin:.15rem 0 .55rem;line-height:1.4;min-height:2.3em}
+.model__b .pr{font-family:'Rubik';font-weight:800}.model__b .pr s{color:var(--ink-2);opacity:.6;font-weight:600;font-size:.85rem;margin-left:.35rem}
+@media(max-width:900px){.models{grid-template-columns:repeat(2,1fr)}}
+
+/* COMPARE */
+.compare{background:var(--ink);color:#fff;border-radius:26px;overflow:hidden}
+.compare__row{display:grid;grid-template-columns:1.4fr 1fr 1fr;align-items:center;padding:1.05rem 1.6rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.compare__row:last-child{border-bottom:none}
+.compare__row.head{background:rgba(255,255,255,.04);font-family:'Rubik';font-weight:800}
+.compare__row.head .col-wtf{color:var(--lime)}
+.compare span.txt{font-weight:600;color:#cfe3ea}.compare .cell{text-align:center}
+.compare .yes{color:var(--lime)}.compare .no{color:#7d94a0}.compare .cell svg{width:22px;height:22px}
+@media(max-width:640px){.compare__row{grid-template-columns:1.3fr .8fr .8fr;padding:.9rem 1rem;font-size:.86rem}}
+
+/* REVIEWS */
+.rev-top{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2.4rem;flex-wrap:wrap}
+.rev-top .big{font-family:'Rubik';font-size:2.6rem;font-weight:900}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.6rem}
+.review p{font-weight:600;margin:.6rem 0 1.1rem}
+.review .who{display:flex;align-items:center;gap:.6rem}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--teal));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rubik';font-weight:800}
+.who b{display:block;font-weight:800;font-size:.92rem}.who small{color:#16a34a;font-weight:800;font-size:.75rem}
+@media(max-width:820px){.reviews{grid-template-columns:1fr}}
+
+/* OFFER */
+.offer{background:radial-gradient(120% 120% at 20% 0%,#0e6f86,#0a1622 70%);color:#fff}
+.offer__card{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:28px;padding:clamp(26px,4vw,46px)}
+.offer__img{border-radius:20px;overflow:hidden;background:#fff}.offer__img img{width:100%;aspect-ratio:1;object-fit:cover}
+.offer h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin:.5rem 0}
+.price{display:flex;align-items:baseline;gap:.7rem;margin:.9rem 0}
+.price .now{font-family:'Rubik';font-size:2.5rem;font-weight:900}.price .was{opacity:.6;text-decoration:line-through;font-weight:700}
+.price .off{background:var(--coral);color:#fff;font-family:'Rubik';font-weight:800;padding:.2rem .6rem;border-radius:7px;font-size:.85rem}
+.packs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1.1rem 0}
+.pack{border:1.5px solid rgba(255,255,255,.25);border-radius:14px;padding:.9rem 1rem;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
+.pack.active{border-color:var(--lime);background:rgba(198,242,78,.08)}
+.pack b{font-family:'Rubik';display:block}.pack small{color:#bcd;opacity:.85;font-weight:700}
+.pack .tag{position:absolute;top:-10px;right:10px;background:var(--lime);color:var(--ink);font-family:'Rubik';font-weight:800;font-size:.62rem;padding:.15rem .5rem;border-radius:6px}
+.swatches{display:flex;gap:9px;margin:.4rem 0 1rem}
+.swatch{width:30px;height:30px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.35);transition:transform .2s,border-color .2s}
+.swatch:hover{transform:scale(1.12)}.swatch.active{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.22)}
+.offer__trust{display:flex;gap:1.1rem;flex-wrap:wrap;margin-top:1.1rem;font-size:.8rem;font-weight:700;opacity:.9}
+.offer__trust span{display:inline-flex;gap:.35rem;align-items:center}.offer__trust svg{width:16px;height:16px}
+.scar{margin-top:.9rem;font-weight:800;color:var(--lime);font-size:.85rem}
+@media(max-width:820px){.offer__card{grid-template-columns:1fr;text-align:center}.price,.swatches,.offer__trust,.packs{justify-content:center}}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto}
+.faq__q{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;background:#fff}
+.faq__q summary{cursor:pointer;list-style:none;padding:1.1rem 1.3rem;font-family:'Rubik';font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq__q summary::-webkit-details-marker{display:none}
+.faq__q summary::after{content:"+";font-size:1.4rem;color:var(--teal);transition:transform .2s}
+.faq__q[open] summary::after{transform:rotate(45deg)}
+.faq__q p{margin:0;padding:0 1.3rem 1.2rem;color:var(--ink-2);font-weight:500}
+
+/* GUAR + FOOTER */
+.guar{background:var(--paper);display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;padding:44px 22px}
+.guar svg{width:50px;height:50px;color:var(--teal)}.guar b{font-family:'Rubik';font-size:1.25rem;display:block}.guar p{margin:.15rem 0 0;color:var(--ink-2);font-weight:600}
+.footer{background:var(--ink);color:#9fc4d1;padding:54px 0 92px}
+.footer__grid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:2rem}
+.footer .logo{color:#fff;margin-bottom:.6rem}.footer .logo .mono{background:#fff;color:var(--ink)}.footer .logo b{color:var(--cyan)}
+.footer p{max-width:32ch;font-weight:500}.footer h4{color:#fff;font-family:'Rubik';margin:0 0 .7rem;font-size:.95rem}
+.footer a{display:block;color:#9fc4d1;margin-bottom:.45rem;font-weight:600;transition:color .2s}.footer a:hover{color:#fff}
+.footer__bot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:.82rem;opacity:.8;font-weight:600}
+
+/* STICKY BUY */
+.stickybuy{position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .35s;box-shadow:0 -8px 30px rgba(10,22,34,.1)}
+.stickybuy.show{transform:none}
+.stickybuy__in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
+.stickybuy__l{display:flex;align-items:center;gap:.8rem}.stickybuy__l img{width:44px;height:44px;object-fit:cover;border-radius:10px;background:var(--paper)}
+.stickybuy__l b{font-family:'Rubik';display:block}.stickybuy__l .p{font-weight:800;color:var(--teal)}.stickybuy__l .p s{color:var(--ink-2);opacity:.6;font-weight:600;margin-left:.4rem}
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:940px;margin:0 auto}
+.step{padding:1.4rem;text-align:center}
+.step .n{width:56px;height:56px;margin:0 auto 1rem;border-radius:50%;background:var(--paper);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'Rubik';font-weight:900;color:var(--teal);font-size:1.3rem}
+.step h3{font-size:1.12rem;font-weight:700;margin-bottom:.3rem}.step p{color:var(--ink-2);font-weight:500;margin:0;font-size:.95rem}
+@media(max-width:700px){.steps{grid-template-columns:1fr}}
+/* COUNTDOWN */
+.countlbl{font-weight:700;font-size:.82rem;opacity:.85;margin-top:.6rem}
+.count{display:flex;gap:.5rem;margin:.4rem 0 0}
+.count .box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:.45rem .6rem;text-align:center;min-width:52px}
+.count .box b{font-family:'Rubik';font-size:1.3rem;display:block;line-height:1.1}.count .box small{font-size:.58rem;letter-spacing:.08em;opacity:.8;text-transform:uppercase}
+/* NEWSLETTER + PAYS */
+.news{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border-radius:26px;padding:clamp(30px,5vw,54px);text-align:center;max-width:840px;margin:0 auto}
+.news h2{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:800}.news p{opacity:.93;font-weight:500;margin:.6rem auto 1.4rem;max-width:44ch}
+.news form{display:flex;gap:.6rem;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.news input{flex:1;min-width:200px;border:none;border-radius:999px;padding:1rem 1.4rem;font-family:inherit;font-size:1rem}
+.pays{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;padding:26px 22px;background:#fff;border-top:1px solid var(--line)}
+.pays span.t{font-weight:800;color:var(--ink-2);font-size:.78rem;letter-spacing:.06em}
+.pays .m{font-family:'Rubik';font-weight:800;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:.4rem .8rem;font-size:.8rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body id="top">
+<div class="progress" id="progress"></div>
+
+<!-- ANNOUNCE -->
+<div class="announce"><div class="announce__t">
+  <span><span class="d"></span> ENVÍO A TODA EUROPA</span><span><span class="d"></span> CÓDIGO VERANO10 · -10% EXTRA</span><span><span class="d"></span> GARANTÍA 30 DÍAS</span><span><span class="d"></span> +10.000 CLIENTES REFRESCADOS</span>
+  <span><span class="d"></span> ENVÍO A TODA EUROPA</span><span><span class="d"></span> CÓDIGO VERANO10 · -10% EXTRA</span><span><span class="d"></span> GARANTÍA 30 DÍAS</span><span><span class="d"></span> +10.000 CLIENTES REFRESCADOS</span>
+</div></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav"><div class="wrap nav__in">
+  <a class="logo" href="#top"><span class="mono">WTF</span>WhatThe<b>Fan</b></a>
+  <div class="nav__links"><a href="#ventajas">Ventajas</a><a href="#modelos">Modelos</a><a href="#comparativa">Comparativa</a><a href="#opiniones">Opiniones</a><a href="#faq">FAQ</a></div>
+  <a href="#oferta" class="btn btn-cta">Comprar 22,95€</a>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero__vid"><video autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sdfd39cb079384032b4c6d9a224888f5aL.webp"><source src="https://videos.pexels.com/video-files/10867353/10867353-uhd_2560_1440_24fps.mp4" type="video/mp4"></video></div>
+  <div class="wrap hero__grid">
+    <div>
+      <div class="hero__rate"><span class="stars">★★★★★</span> 4,8/5 · +1.900 reseñas</div>
+      <h1>El mini ventilador<br>que te hará decir <em>WTF.</em></h1>
+      <p class="hero__sub">Tan pequeño que cabe en tu bolsillo. Tan potente que no te lo crees. Te salva del calor en la playa, el festival, la oficina o el bus a 40 grados.</p>
+      <div class="hero__ctas"><a href="#oferta" class="btn btn-cta">Quiero el mío · 22,95€ →</a><a href="#modelos" class="btn btn-ghost">Ver modelos</a></div>
+      <div class="hero__mini"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Envío 7-15 días</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Garantía 30 días</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Pago seguro</span></div>
+    </div>
+    <div class="hero__media">
+      <img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sdfd39cb079384032b4c6d9a224888f5aL.webp" alt="Mini ventilador WhatTheFan">
+      <div class="badge"><span>-43%</span><span>HOY</span></div>
+      <div class="chip c1"><span class="stars" style="font-size:.78rem">★★★★★</span> 4,8</div>
+      <div class="chip c2"><span class="em">●</span> +10.000 vendidos</div>
+    </div>
+  </div>
+  <div class="scroll-cue"></div>
+</header>
+
+<!-- TRUSTBAR -->
+<div class="trustbar"><div class="wrap trustbar__in">
+  <div class="trustbar__it"><b>+10.000</b><small>CLIENTES</small></div><div class="trustbar__it"><b>4,8/5</b><small>VALORACIÓN</small></div><div class="trustbar__it"><b>1800mAh</b><small>BATERÍA</small></div><div class="trustbar__it"><b>5</b><small>VELOCIDADES</small></div><div class="trustbar__it"><b>7-15 días</b><small>ENVÍO EU</small></div>
+</div></div>
+
+<!-- BENEFITS -->
+<section class="sec" id="ventajas"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">Por qué WTF</span><h2>Pequeño en tamaño. Bestia en aire.</h2><p>Todo lo que necesitas para sobrevivir al verano, en la palma de tu mano.</p></div>
+  <div class="cards">
+    <div class="card reveal"><div class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a5 5 0 0 1 0 9 4 4 0 0 0 0 8"/></svg></div><h3>Aire potente</h3><p>Motor turbo de 5 velocidades. Refresca al instante, estés donde estés.</p></div>
+    <div class="card reveal d1"><div class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 10v4M6 10v4"/></svg></div><h3>Batería para horas</h3><p>1800mAh recargable por USB. Sin pilas, sin cables, sin excusas.</p></div>
+    <div class="card reveal d2"><div class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h11"/></svg></div><h3>3 en 1 plegable</h3><p>De mano, de cuello y de mesa con soporte para el móvil. Se adapta a ti.</p></div>
+    <div class="card reveal d3"><div class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v18M8 7c-3 2-3 8 0 10M16 7c3 2 3 8 0 10"/></svg></div><h3>Silencioso</h3><p>Pantalla digital de nivel y modo silencio. Pesa menos que tu móvil.</p></div>
+  </div>
+</div></section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" style="background:#fff"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">Fácil</span><h2>Refréscate en 3 segundos</h2></div>
+  <div class="steps">
+    <div class="step reveal"><div class="n">1</div><h3>Enciéndelo</h3><p>Un botón y listo. Se enciende al instante, sin esperas.</p></div>
+    <div class="step reveal d1"><div class="n">2</div><h3>Elige velocidad</h3><p>5 niveles: de brisa suave a modo turbo bestia.</p></div>
+    <div class="step reveal d2"><div class="n">3</div><h3>Refréscate</h3><p>En la mano, al cuello o en la mesa. Donde quieras.</p></div>
+  </div>
+</div></section>
+
+<!-- DEEP DIVE 1 -->
+<section class="sec" style="background:var(--paper)"><div class="wrap dive">
+  <div class="reveal">
+    <div class="dive__media"><img id="mainImg" src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S85ac8e4aad2f4637a93d86519bb0a1a6E.webp" alt="WhatTheFan en detalle"></div>
+    <div class="thumbs">
+      <img class="active" src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S85ac8e4aad2f4637a93d86519bb0a1a6E.webp" alt="Vista 1">
+      <img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sa1748f3b11764a4aa55ec07f3f7ea223g.webp" alt="Vista 2">
+      <img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S74da033ef8f74fb5bee5356e90aa94a0Q.webp" alt="Vista 3">
+      <img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp" alt="Vista 4">
+    </div>
+  </div>
+  <div class="reveal">
+    <span class="eyebrow">3 en 1</span><h2>Un ventilador. Mil formas de refrescarte.</h2>
+    <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Modo mano</b><p>Agárralo y apunta. Aire directo cuando más aprieta el calor.</p></div></div>
+    <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Modo cuello</b><p>Se pliega y te lo cuelgas. Manos libres en el festival o paseando.</p></div></div>
+    <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Modo mesa + soporte móvil</b><p>De pie en el escritorio y sujetando el móvil mientras ves series.</p></div></div>
+    <a href="#oferta" class="btn btn-dark" style="margin-top:.8rem">Lo quiero →</a>
+  </div>
+</div></section>
+
+<!-- PARALLAX BAND -->
+<section class="band">
+  <div class="band__vid"><video autoplay muted loop playsinline><source src="https://videos.pexels.com/video-files/10867353/10867353-uhd_2560_1440_24fps.mp4" type="video/mp4"></video></div>
+  <div class="band__in reveal"><h2>¿40 grados? WhatTheFan.</h2><p>El verano no avisa. Tú vas preparado.</p></div>
+</section>
+
+<!-- MODELS -->
+<section class="sec" id="modelos"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">La familia WTF</span><h2>Elige tu ventilador</h2><p>El mismo aire bestia, en el formato que más te pega.</p></div>
+  <div class="models">
+    <div class="model reveal"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sdfd39cb079384032b4c6d9a224888f5aL.webp" alt="WhatTheFan Flex"></div><div class="model__b"><span class="tag">3 en 1 · estrella</span><h3>WTF Flex</h3><p class="mdesc">Mano, cuello y mesa con soporte móvil.</p><p class="pr">22,95€ <s>39,95€</s></p></div></div>
+    <div class="model reveal d1"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sbb764e8095c64d73a357d16cd44137b7P.webp" alt="WhatTheFan Ice"></div><div class="model__b"><span class="tag">Enfría de verdad</span><h3>WTF Ice</h3><p class="mdesc">Placa fría + pantalla LED + 100 velocidades.</p><p class="pr">27,95€ <s>49,95€</s></p></div></div>
+    <div class="model reveal d2"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S13d9991ea349431a88defa3ddb457d5bJ.webp" alt="WhatTheFan Blast"></div><div class="model__b"><span class="tag">El más potente</span><h3>WTF Blast</h3><p class="mdesc">Alta velocidad, chorro de aire bestia.</p><p class="pr">19,95€ <s>34,95€</s></p></div></div>
+    <div class="model reveal d3"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S238d093e8a8b4b6e9bc3416a5a790ec7x.webp" alt="WhatTheFan Tower"></div><div class="model__b"><span class="tag">Máx. batería</span><h3>WTF Tower</h3><p class="mdesc">5000mAh · sobremesa o pared.</p><p class="pr">29,95€ <s>54,95€</s></p></div></div>
+    <div class="model reveal"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sd0db352f87794fb2b3882e738906acf61.webp" alt="WhatTheFan Clip"></div><div class="model__b"><span class="tag">Se engancha</span><h3>WTF Clip</h3><p class="mdesc">Pinza 720° + luz nocturna.</p><p class="pr">21,95€ <s>38,95€</s></p></div></div>
+    <div class="model reveal d1"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sddf40b6074af41409340d107f6a1e2d7c.webp" alt="WhatTheFan Power"></div><div class="model__b"><span class="tag">2 en 1</span><h3>WTF Power</h3><p class="mdesc">Ventilador + batería externa.</p><p class="pr">16,95€ <s>29,95€</s></p></div></div>
+    <div class="model reveal d2"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S5c57f3c06a6c47478e0338fc34ec01b6p.webp" alt="WhatTheFan Go"></div><div class="model__b"><span class="tag">De viaje</span><h3>WTF Go</h3><p class="mdesc">Ultraligero para camping y festivales.</p><p class="pr">13,95€ <s>24,95€</s></p></div></div>
+    <div class="model reveal d3"><div class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sc691d9fc01ad44adac97fee86d5f18227.webp" alt="WhatTheFan Mini"></div><div class="model__b"><span class="tag">De bolsillo</span><h3>WTF Mini</h3><p class="mdesc">Cuqui y silencioso · 4 colores.</p><p class="pr">12,95€ <s>22,95€</s></p></div></div>
+  </div>
+</div></section>
+
+<!-- DEEP DIVE 2 -->
+<section class="sec" style="background:var(--paper)"><div class="wrap dive rev">
+  <div class="dive__media reveal"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S74b645fdd3df4177af31c629e2a559892.webp" alt="Batería y potencia WhatTheFan"></div>
+  <div class="reveal">
+    <span class="eyebrow">Potencia real</span><h2>Aire de aire acondicionado. Tamaño de bolsillo.</h2>
+    <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>5 velocidades</b><p>Desde brisa suave hasta modo turbo que despeina.</p></div></div>
+    <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Hasta horas de uso</b><p>Batería 1800mAh. Carga por USB y olvídate.</p></div></div>
+    <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Pantalla digital</b><p>Batería y velocidad de un vistazo. Sin adivinar.</p></div></div>
+    <a href="#oferta" class="btn btn-dark" style="margin-top:.8rem">Comprar ahora →</a>
+  </div>
+</div></section>
+
+<!-- COMPARE -->
+<section class="sec" id="comparativa"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">La diferencia</span><h2>WhatTheFan vs. el ventilador cutre de siempre</h2></div>
+  <div class="compare reveal">
+    <div class="compare__row head"><span>&nbsp;</span><span class="cell col-wtf">WhatTheFan</span><span class="cell">Ventilador normal</span></div>
+    <div class="compare__row"><span class="txt">Aire potente 5 velocidades</span><span class="cell yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="cell no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+    <div class="compare__row"><span class="txt">Plegable 3-en-1</span><span class="cell yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="cell no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+    <div class="compare__row"><span class="txt">Batería 1800mAh recargable</span><span class="cell yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="cell no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+    <div class="compare__row"><span class="txt">Pantalla digital + soporte móvil</span><span class="cell yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="cell no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+    <div class="compare__row"><span class="txt">Garantía 30 días</span><span class="cell yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span><span class="cell no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+  </div>
+</div></section>
+
+<!-- REVIEWS -->
+<section class="sec" id="opiniones" style="background:var(--paper)"><div class="wrap">
+  <div class="rev-top reveal"><span class="big">4,8</span><div><span class="stars">★★★★★</span><br><small style="color:var(--ink-2);font-weight:700">basado en +1.900 opiniones verificadas</small></div></div>
+  <div class="reviews">
+    <div class="review reveal"><span class="stars">★★★★★</span><p>"No me lo quito. Lo llevo en el bolso y en el metro es un salvavidas. La batería dura muchísimo."</p><div class="who"><div class="avatar">L</div><div><b>Lucía M.</b><small>✓ Compra verificada</small></div></div></div>
+    <div class="review reveal d1"><span class="stars">★★★★★</span><p>"Lo de colgártelo al cuello en el festival es genial. Sopla mucho más de lo que esperaba, WTF real."</p><div class="who"><div class="avatar">D</div><div><b>Dani R.</b><small>✓ Compra verificada</small></div></div></div>
+    <div class="review reveal d2"><span class="stars">★★★★★</span><p>"En la oficina de mesa con el soporte del móvil. Calidad mucho mejor de lo que pensaba por el precio."</p><div class="who"><div class="avatar">N</div><div><b>Nerea P.</b><small>✓ Compra verificada</small></div></div></div>
+  </div>
+</div></section>
+
+<!-- OFFER -->
+<section class="sec offer" id="oferta"><div class="wrap">
+  <div class="offer__card reveal">
+    <div class="offer__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sdfd39cb079384032b4c6d9a224888f5aL.webp" alt="WhatTheFan"></div>
+    <div>
+      <span class="eyebrow" style="color:var(--cyan)">Oferta de lanzamiento</span>
+      <h2>WhatTheFan · Turbo</h2>
+      <div class="price"><span class="now">22,95€</span><span class="was">39,95€</span><span class="off">-43%</span></div>
+      <div class="countlbl">La oferta de lanzamiento acaba en:</div>
+      <div class="count"><div class="box"><b id="ch">02</b><small>Horas</small></div><div class="box"><b id="cm">34</b><small>Min</small></div><div class="box"><b id="cs">11</b><small>Seg</small></div></div>
+      <div class="packs">
+        <div class="pack active"><b>1 unidad</b><small>22,95€ · para ti</small></div>
+        <div class="pack"><span class="tag">AHORRA 12€</span><b>2 unidades</b><small>33,90€ · con regalo</small></div>
+      </div>
+      <div style="font-weight:700;font-size:.85rem;margin-bottom:.3rem">Color:</div>
+      <div class="swatches">
+        <span class="swatch active" style="background:#f4bcd0" title="Rosa" data-v="54210050654547"></span>
+        <span class="swatch" style="background:#b39ddb" title="Morado" data-v="54210050687315"></span>
+        <span class="swatch" style="background:#fff" title="Blanco" data-v="54210050720083"></span>
+        <span class="swatch" style="background:#4fc3f7" title="Azul" data-v="54210050752851"></span>
+        <span class="swatch" style="background:#81c784" title="Verde" data-v="54210050785619"></span>
+      </div>
+      <a id="buyBtn" href="https://beyondandbeauty.myshopify.com/cart/54210050654547:1" class="btn btn-cta" style="width:100%;font-size:1.1rem">Comprar ahora →</a>
+      <div class="scar">Stock limitado de verano — quedan pocas unidades</div>
+      <div class="offer__trust"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Pago seguro</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v3h-7"/></svg> Envío 7-15 días</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5z"/></svg> Garantía 30 días</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="sec" id="faq"><div class="wrap">
+  <div class="sec-head reveal"><span class="eyebrow">Dudas</span><h2>Preguntas frecuentes</h2></div>
+  <div class="faq reveal">
+    <details class="faq__q"><summary>¿Cuánto tarda el envío?</summary><p>Enviamos en 7-15 días a toda Europa. Recibirás seguimiento por email en cuanto salga tu pedido.</p></details>
+    <details class="faq__q"><summary>¿Cuánto dura la batería?</summary><p>La batería de 1800mAh aguanta varias horas según la velocidad. Se recarga por USB en poco tiempo.</p></details>
+    <details class="faq__q"><summary>¿De verdad sopla fuerte?</summary><p>Sí. Motor turbo de 5 velocidades: desde brisa suave hasta modo bestia. Por algo se llama WhatTheFan.</p></details>
+    <details class="faq__q"><summary>¿Y si no me gusta?</summary><p>Tienes 30 días de garantía. Si no te enamora, te devolvemos el dinero. Sin líos.</p></details>
+  </div>
+</div></section>
+
+<!-- GUAR -->
+<div class="guar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Compra sin riesgo · 30 días de garantía</b><p>Si no te enamora, te devolvemos el dinero. Así de simple.</p></div></div>
+
+<!-- NEWSLETTER -->
+<section class="sec"><div class="wrap"><div class="news reveal">
+  <h2>Únete al club WTF</h2>
+  <p>Ofertas de verano, novedades y un descuento de bienvenida directo a tu email.</p>
+  <form onsubmit="return false"><input type="email" placeholder="Tu email" aria-label="Email"><button class="btn" style="background:var(--ink);color:#fff">Quiero mi descuento</button></form>
+</div></div></section>
+
+<!-- PAYMENTS -->
+<div class="pays"><span class="t">PAGO 100% SEGURO</span><span class="m">VISA</span><span class="m">Mastercard</span><span class="m">PayPal</span><span class="m">Apple&nbsp;Pay</span><span class="m">Bizum</span></div>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="wrap">
+  <div class="footer__grid">
+    <div><div class="logo"><span class="mono">WTF</span> WhatThe<b>Fan</b></div><p>El mini ventilador que te hará decir WTF. Hecho para el verano.</p></div>
+    <div><h4>Tienda</h4><a href="#oferta">Comprar</a><a href="#modelos">Modelos</a><a href="#opiniones">Opiniones</a></div>
+    <div><h4>Ayuda</h4><a href="contacto.html">Contacto</a><a href="envios.html">Envíos y entregas</a><a href="devoluciones.html">Devoluciones</a></div>
+    <div><h4>Legal</h4><a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="devoluciones.html">Reembolsos</a></div>
+  </div>
+  <div class="footer__bot">© 2026 WhatTheFan. Todos los derechos reservados.</div>
+</div></footer>
+
+<!-- STICKY BUY -->
+<div class="stickybuy" id="sticky"><div class="wrap stickybuy__in">
+  <div class="stickybuy__l"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sdfd39cb079384032b4c6d9a224888f5aL.webp" alt="WhatTheFan"><div><b>WhatTheFan Turbo</b><small class="p">22,95€ <s>39,95€</s></small></div></div>
+  <a href="#oferta" class="btn btn-cta">Comprar ahora →</a>
+</div></div>
+
+<script>
+const nav=document.getElementById('nav'),sticky=document.getElementById('sticky'),prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>60);
+  sticky.classList.toggle('show',scrollY>760);
+  const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const main=document.getElementById('mainImg');
+document.querySelectorAll('.thumbs img').forEach(t=>t.addEventListener('click',()=>{main.src=t.src;document.querySelectorAll('.thumbs img').forEach(x=>x.classList.remove('active'));t.classList.add('active')}));
+document.querySelectorAll('.swatch').forEach(s=>s.addEventListener('click',()=>{document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active'));s.classList.add('active');const v=s.dataset.v,b=document.getElementById('buyBtn');if(v&&b)b.href='https://beyondandbeauty.myshopify.com/cart/'+v+':1'}));
+document.querySelectorAll('.pack').forEach(p=>p.addEventListener('click',()=>{document.querySelectorAll('.pack').forEach(x=>x.classList.remove('active'));p.classList.add('active')}));
+document.querySelectorAll('.model').forEach(m=>m.addEventListener('click',()=>location.hash='#oferta'));
+let ct=2*3600+34*60+11;const pad=n=>String(n).padStart(2,'0');setInterval(()=>{if(ct<=0)ct=3*3600;ct--;const ch=document.getElementById('ch');if(!ch)return;document.getElementById('ch').textContent=pad(Math.floor(ct/3600));document.getElementById('cm').textContent=pad(Math.floor(ct%3600/60));document.getElementById('cs').textContent=pad(ct%60)},1000);
+</script>
+</body>
+</html>
