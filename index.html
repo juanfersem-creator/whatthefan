@@ -266,11 +266,31 @@ a{color:inherit;text-decoration:none}
 .combo .cp{margin:.5rem 0 .9rem}.combo .cp b{font-family:'Rubik';font-size:1.5rem}.combo .cp s{color:var(--ink-2);opacity:.6;margin-left:.4rem;font-weight:600;font-size:1rem}
 @media(max-width:900px){.combos{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
 .tilt{will-change:transform;transition:transform .25s ease}
+.intro{position:fixed;inset:0;z-index:200;background:radial-gradient(120% 120% at 50% 28%,#12718a,#0a1622 68%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;overflow:hidden}
+.intro.hide{animation:introOut .8s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes introOut{to{opacity:0;transform:scale(1.1);visibility:hidden}}
+.intro__mono{width:112px;height:112px;border-radius:28px;background:#0a1622;color:var(--lime);display:flex;align-items:center;justify-content:center;font-family:'Rubik';font-weight:900;font-size:2.4rem;letter-spacing:-.04em;box-shadow:0 24px 60px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.08);opacity:0;transform:scale(.5) rotate(-14deg);animation:mIn .85s cubic-bezier(.34,1.56,.64,1) .15s forwards}
+@keyframes mIn{to{opacity:1;transform:scale(1) rotate(0)}}
+.intro__name{font-family:'Rubik';font-weight:800;font-size:clamp(1.9rem,5.5vw,3rem);color:#fff;opacity:0;transform:translateY(16px);animation:iUp .7s ease .65s forwards}
+.intro__name b{background:linear-gradient(90deg,var(--cyan),#7ef0ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.intro__tag{color:#9fd8e6;font-weight:700;letter-spacing:.34em;text-transform:uppercase;font-size:.7rem;opacity:0;animation:iUp .7s ease .95s forwards}
+@keyframes iUp{to{opacity:1;transform:none}}
+.intro__w{position:absolute;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);left:-40%;width:40%;opacity:0;animation:wSweep 1.9s ease-in-out infinite}
+@keyframes wSweep{0%{transform:translateX(0);opacity:0}25%{opacity:.55}100%{transform:translateX(360%);opacity:0}}
+.logo b{background:linear-gradient(90deg,var(--teal),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body id="top">
 <div class="progress" id="progress"></div>
+<div class="intro" id="intro">
+  <span class="intro__w" style="top:30%;animation-delay:.1s"></span><span class="intro__w" style="top:50%;width:55%;animation-delay:.5s"></span><span class="intro__w" style="top:70%;width:32%;animation-delay:.9s"></span>
+  <div class="intro__mono">WTF</div>
+  <div class="intro__name">WhatThe<b>Fan</b></div>
+  <div class="intro__tag">El aire no espera</div>
+</div>
+<script>(function(){var i=document.getElementById('intro');if(!i)return;if(sessionStorage.getItem('wtf_intro')){i.parentNode.removeChild(i);return}sessionStorage.setItem('wtf_intro','1');document.body.style.overflow='hidden';setTimeout(function(){i.classList.add('hide');document.body.style.overflow=''},2500);setTimeout(function(){if(i.parentNode)i.parentNode.removeChild(i)},3300)})();</script>
+
 
 <!-- ANNOUNCE -->
 <div class="announce"><div class="announce__t">
