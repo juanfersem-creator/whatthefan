@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%230891b2'/%3E%3Cg fill='%23fff'%3E%3Cpath d='M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z'/%3E%3Cpath d='M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z' transform='rotate(120 24 24)'/%3E%3Cpath d='M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z' transform='rotate(240 24 24)'/%3E%3C/g%3E%3Ccircle cx='24' cy='24' r='4' fill='%230a1622'/%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WhatTheFan — El mini ventilador que te hará decir WTF</title>
 <meta name="description" content="WhatTheFan: el mini ventilador de mano recargable que suelta aire de verdad. Potente, plegable 3-en-1, batería para horas. Envío 7-15 días · Garantía 30 días.">
@@ -267,11 +267,15 @@ a{color:inherit;text-decoration:none}
 .cart__up img{width:44px;height:44px;object-fit:cover;border-radius:9px;background:var(--paper)}
 .cart__up .u{flex:1;font-size:.8rem;font-weight:700;line-height:1.2}.cart__up .u small{color:var(--ink-2);font-weight:600;display:block}
 .cart__up button{background:var(--ink);color:#fff;border:none;border-radius:999px;padding:.45rem .9rem;font-family:'Rubik';font-weight:700;font-size:.78rem;cursor:pointer;flex-shrink:0}
-.sp-toast{position:fixed;left:18px;bottom:18px;z-index:80;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(10,22,34,.18);padding:.7rem .85rem;display:flex;gap:.7rem;align-items:center;max-width:290px;transform:translateY(180%);transition:transform .5s cubic-bezier(.22,.61,.36,1),opacity .4s;opacity:0}
+.sp-toast{position:fixed;left:20px;bottom:20px;z-index:80;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(10,22,34,.22);padding:.55rem;display:flex;gap:.75rem;align-items:center;max-width:308px;transform:translateY(180%) scale(.96);transition:transform .55s cubic-bezier(.34,1.3,.5,1),opacity .4s;opacity:0}
 .sp-toast.show{transform:none;opacity:1}
-.sp-toast img{width:42px;height:42px;object-fit:cover;border-radius:9px;background:var(--paper);flex-shrink:0}
-.sp-toast .t{font-size:.76rem;line-height:1.3}.sp-toast .t small{color:var(--ink-2);display:block;font-size:.66rem}
-.sp-toast .dot{width:8px;height:8px;border-radius:50%;background:#16a34a;flex-shrink:0;animation:pulse2 1.6s infinite}
+.sp-toast .im{position:relative;flex-shrink:0}
+.sp-toast .im img{width:52px;height:52px;object-fit:cover;border-radius:12px;background:var(--paper)}
+.sp-toast .im .chk{position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:#16a34a;color:#fff;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+.sp-toast .im .chk svg{width:11px;height:11px}
+.sp-toast .t{font-size:.8rem;line-height:1.35;padding-right:.3rem}
+.sp-toast .t .nm{font-weight:800}.sp-toast .t .pr{color:var(--teal-d);font-weight:800}
+.sp-toast .t small{color:var(--ink-2);display:block;font-size:.66rem;margin-top:1px}
 @keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
 .hero__live{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);border-radius:999px;padding:.35rem .85rem;font-size:.78rem;font-weight:800;margin-bottom:.9rem}
 .hero__live .ld{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse2 1.6s infinite}
@@ -314,7 +318,7 @@ a{color:inherit;text-decoration:none}
 <div class="progress" id="progress"></div>
 <div class="intro" id="intro">
   <span class="intro__w" style="top:30%;animation-delay:.1s"></span><span class="intro__w" style="top:50%;width:55%;animation-delay:.5s"></span><span class="intro__w" style="top:70%;width:32%;animation-delay:.9s"></span>
-  <svg class="fanlogo intro__fan" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#0a1622"/><g class="blades"><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#22d3ee"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#22d3ee" transform="rotate(90 24 24)"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#0891b2" transform="rotate(180 24 24)"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#0891b2" transform="rotate(270 24 24)"/></g><circle cx="24" cy="24" r="3.4" fill="#c6f24e"/></svg>
+  <svg class="fanlogo intro__fan" viewBox="0 0 48 48"><defs><linearGradient id="wtfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0e6f86"/></linearGradient></defs><rect width="48" height="48" rx="14" fill="url(#wtfg)"/><g class="blades" fill="#fff"><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z"/><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z" transform="rotate(120 24 24)"/><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z" transform="rotate(240 24 24)"/></g><circle cx="24" cy="24" r="4.4" fill="#0a1622"/><circle cx="24" cy="24" r="2.1" fill="#c6f24e"/></svg>
   <div class="intro__name"><span class="wm">WhatThe<b>Fan</b></span></div>
   <div class="intro__of">Only<b style="color:#fff">Fans</b><small>*de ventiladores, no seas mal pensado ;)</small></div>
 </div>
@@ -329,7 +333,7 @@ a{color:inherit;text-decoration:none}
 
 <!-- NAV -->
 <nav class="nav" id="nav"><div class="wrap nav__in">
-  <a class="logo" href="#top"><svg class="fanlogo" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#0a1622"/><g class="blades"><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#22d3ee"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#22d3ee" transform="rotate(90 24 24)"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#0891b2" transform="rotate(180 24 24)"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#0891b2" transform="rotate(270 24 24)"/></g><circle cx="24" cy="24" r="3.4" fill="#c6f24e"/></svg><span class="wm">WhatThe<b>Fan</b></span></a>
+  <a class="logo" href="#top"><svg class="fanlogo" viewBox="0 0 48 48"><defs><linearGradient id="wtfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0e6f86"/></linearGradient></defs><rect width="48" height="48" rx="14" fill="url(#wtfg)"/><g class="blades" fill="#fff"><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z"/><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z" transform="rotate(120 24 24)"/><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z" transform="rotate(240 24 24)"/></g><circle cx="24" cy="24" r="4.4" fill="#0a1622"/><circle cx="24" cy="24" r="2.1" fill="#c6f24e"/></svg><span class="wm">WhatThe<b>Fan</b></span></a>
   <div class="nav__links"><a href="#ventajas">Ventajas</a><a href="#modelos">Modelos</a><a href="#comparativa">Comparativa</a><a href="#opiniones">Opiniones</a><a href="#faq">FAQ</a></div>
   <div class="navr"><button class="cartbtn" onclick="openCart()" aria-label="Ver carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.2 10.5a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 7a3.5 3.5 0 0 1 7 0"/></svg><span class="cnt" id="cartCount">0</span></button><a href="#oferta" class="btn btn-cta">Comprar 22,95€</a></div>
 </div></nav>
@@ -478,7 +482,7 @@ a{color:inherit;text-decoration:none}
 <!-- FOOTER -->
 <footer class="footer"><div class="wrap">
   <div class="footer__grid">
-    <div><div class="logo"><svg class="fanlogo" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#0a1622"/><g class="blades"><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#22d3ee"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#22d3ee" transform="rotate(90 24 24)"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#0891b2" transform="rotate(180 24 24)"/><path d="M24 24C24 12 34 12 36 20C30 21 27 22 24 24Z" fill="#0891b2" transform="rotate(270 24 24)"/></g><circle cx="24" cy="24" r="3.4" fill="#c6f24e"/></svg> <span class="wm">WhatThe<b>Fan</b></span></div><p>El mini ventilador que te hará decir WTF. Hecho para el verano.</p></div>
+    <div><div class="logo"><svg class="fanlogo" viewBox="0 0 48 48"><defs><linearGradient id="wtfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0e6f86"/></linearGradient></defs><rect width="48" height="48" rx="14" fill="url(#wtfg)"/><g class="blades" fill="#fff"><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z"/><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z" transform="rotate(120 24 24)"/><path d="M24 24C15 19 15 9 24 7C27 13 27 19 24 24Z" transform="rotate(240 24 24)"/></g><circle cx="24" cy="24" r="4.4" fill="#0a1622"/><circle cx="24" cy="24" r="2.1" fill="#c6f24e"/></svg> <span class="wm">WhatThe<b>Fan</b></span></div><p>El mini ventilador que te hará decir WTF. Hecho para el verano.</p></div>
     <div><h4>Tienda</h4><a href="#oferta">Comprar</a><a href="#modelos">Modelos</a><a href="#opiniones">Opiniones</a></div>
     <div><h4>Ayuda</h4><a href="contacto.html">Contacto</a><a href="envios.html">Envíos y entregas</a><a href="devoluciones.html">Devoluciones</a></div>
     <div><h4>Legal</h4><a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a><a href="devoluciones.html">Reembolsos</a></div>
@@ -557,7 +561,7 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
 let ct=2*3600+34*60+11;const pad=n=>String(n).padStart(2,'0');setInterval(()=>{if(ct<=0)ct=3*3600;ct--;const ch=document.getElementById('ch');if(!ch)return;document.getElementById('ch').textContent=pad(Math.floor(ct/3600));document.getElementById('cm').textContent=pad(Math.floor(ct%3600/60));document.getElementById('cs').textContent=pad(ct%60)},1000);
 var SP=[['Marcos','Valencia','WhatTheFan Flex','Sdfd39cb079384032b4c6d9a224888f5aL'],['Lucía','Madrid','WhatTheFan Ice','Sbb764e8095c64d73a357d16cd44137b7P'],['Dani','Sevilla','WhatTheFan Blast','S13d9991ea349431a88defa3ddb457d5bJ'],['Nerea','Barcelona','WhatTheFan Flex','Sdfd39cb079384032b4c6d9a224888f5aL'],['Javi','Málaga','WhatTheFan Tower','S238d093e8a8b4b6e9bc3416a5a790ec7x'],['Carla','Bilbao','WhatTheFan Mini','Sc691d9fc01ad44adac97fee86d5f18227'],['Pablo','Zaragoza','WhatTheFan Clip','Sd0db352f87794fb2b3882e738906acf61'],['Sara','Murcia','WhatTheFan Flex','Sdfd39cb079384032b4c6d9a224888f5aL']];
 var spi=Math.floor(Math.random()*SP.length);
-function showSP(){var t=document.getElementById('spToast');if(!t)return;var d=SP[spi%SP.length];spi++;var m=Math.floor(Math.random()*28)+2;t.innerHTML='<span class="dot"></span><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/'+d[3]+'.webp" alt=""><div class="t"><b>'+d[0]+' de '+d[1]+'</b> acaba de comprar<br><b>'+d[2]+'</b><small>hace '+m+' min · compra verificada</small></div>';t.classList.add('show');setTimeout(function(){t.classList.remove('show')},5000)}
+function showSP(){var t=document.getElementById('spToast');if(!t)return;var d=SP[spi%SP.length];spi++;var m=Math.floor(Math.random()*28)+2;t.innerHTML='<div class="im"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/'+d[3]+'.webp" alt=""><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div><div class="t"><span class="nm">'+d[0]+'</span> de '+d[1]+' compró<br><span class="pr">'+d[2]+'</span><small>hace '+m+' min · Compra verificada</small></div>';t.classList.add('show');setTimeout(function(){t.classList.remove('show')},5000)}
 setTimeout(function(){showSP();setInterval(showSP,16000)},7000);
 </script>
 </body>
