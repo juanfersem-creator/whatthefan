@@ -259,6 +259,14 @@ a{color:inherit;text-decoration:none}
 .cart__f{padding:1.2rem 1.4rem;border-top:1px solid var(--line)}
 .cart__tot{display:flex;justify-content:space-between;font-family:'Rubik';font-weight:800;font-size:1.25rem;margin-bottom:.9rem}
 .cart__note{text-align:center;font-size:.72rem;color:var(--ink-2);margin-top:.7rem}
+.cart__ship{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem;margin-bottom:.8rem;font-size:.82rem;font-weight:700;color:var(--teal-d);text-align:center}
+.cart__ship b{color:var(--coral)}
+.cart__ship .bar{height:6px;background:var(--line);border-radius:6px;margin-top:.5rem;overflow:hidden}
+.cart__ship .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--teal));border-radius:6px;transition:width .4s}
+.cart__up{display:none;align-items:center;gap:.7rem;background:#fff;border:1px dashed var(--cyan);border-radius:12px;padding:.6rem .8rem;margin-bottom:.8rem}
+.cart__up img{width:44px;height:44px;object-fit:cover;border-radius:9px;background:var(--paper)}
+.cart__up .u{flex:1;font-size:.8rem;font-weight:700;line-height:1.2}.cart__up .u small{color:var(--ink-2);font-weight:600;display:block}
+.cart__up button{background:var(--ink);color:#fff;border:none;border-radius:999px;padding:.45rem .9rem;font-family:'Rubik';font-weight:700;font-size:.78rem;cursor:pointer;flex-shrink:0}
 .combos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .combo{background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:1.5rem 1.3rem;text-align:center;transition:border-color .3s,transform .3s,box-shadow .3s}
 .combo:hover{border-color:var(--cyan);transform:translateY(-5px);box-shadow:var(--shadow)}
@@ -474,6 +482,8 @@ a{color:inherit;text-decoration:none}
   <div class="cart__h"><h3>Tu carrito</h3><button class="cart__x" onclick="closeCart()" aria-label="Cerrar">&times;</button></div>
   <div class="cart__items" id="cartItems"></div>
   <div class="cart__f">
+    <div class="cart__ship" id="cartShip"></div>
+    <div class="cart__up" id="cartUp"></div>
     <div class="cart__tot"><span>Total</span><span id="cartTotal">0,00€</span></div>
     <button class="btn btn-cta" style="width:100%;font-size:1.05rem" onclick="checkout()">Ir a pagar &rarr;</button>
     <p class="cart__note">Pago 100% seguro con Shopify · Usa <strong>VERANO10</strong> para un -10% extra</p>
@@ -510,6 +520,7 @@ function rmItem(idx){cart.splice(idx,1);saveCart()}
 function openCart(){document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOv').classList.add('open')}
 function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOv').classList.remove('open')}
 function checkout(){if(!cart.length){openCart();return}var perm=cart.map(function(x){return x.v+':'+x.q}).join(',');location.href='https://beyondandbeauty.myshopify.com/cart/'+perm}
+function addMini(){addToCart('54245765546323','WhatTheFan Mini',12.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sc691d9fc01ad44adac97fee86d5f18227.webp',1)}
 function renderCart(){
   var wrap=document.getElementById('cartItems'),cnt=document.getElementById('cartCount'),tot=document.getElementById('cartTotal');
   var count=cart.reduce(function(a,x){return a+x.q},0);
@@ -517,6 +528,10 @@ function renderCart(){
   if(!cart.length){wrap.innerHTML='<div class="cart__empty">Tu carrito está vacío.<br>¡Añade tu WhatTheFan!</div>';tot.textContent='0,00€';return}
   wrap.innerHTML=cart.map(function(x,idx){return '<div class="citem"><img src="'+x.i+'" alt=""><div class="citem__b"><b>'+x.n+'</b><span class="cp">'+money(x.p)+'</span><div class="qty"><button onclick="chgQty('+idx+',-1)">−</button><span>'+x.q+'</span><button onclick="chgQty('+idx+',1)">+</button></div><br><button class="citem__rm" onclick="rmItem('+idx+')">Quitar</button></div></div>'}).join('');
   tot.textContent=money(cart.reduce(function(a,x){return a+x.p*x.q},0));
+  var ship=document.getElementById('cartShip');
+  if(ship){if(count>=3){ship.innerHTML='Tienes <b>ENVIO GRATIS</b> conseguido';}else{var f=3-count;ship.innerHTML='Anade <b>'+f+'</b> mas y consigues <b>ENVIO GRATIS</b><span class="bar"><i style="width:'+Math.min(100,count/3*100)+'%"></i></span>';}}
+  var up=document.getElementById('cartUp');
+  if(up){if(cart.find(function(x){return x.v==='54245765546323'})){up.style.display='none';}else{up.style.display='flex';up.innerHTML='<img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sc691d9fc01ad44adac97fee86d5f18227.webp"><div class="u">Le sumas el WTF Mini?<small>Solo 12,95 EUR - el regalo perfecto</small></div><button onclick="addMini()">Anadir</button>';}}
 }
 document.querySelectorAll('[data-add]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();addToCart(b.dataset.v,b.dataset.n,b.dataset.p,b.dataset.i,1)})});
 renderCart();
