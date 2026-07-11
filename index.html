@@ -267,6 +267,15 @@ a{color:inherit;text-decoration:none}
 .cart__up img{width:44px;height:44px;object-fit:cover;border-radius:9px;background:var(--paper)}
 .cart__up .u{flex:1;font-size:.8rem;font-weight:700;line-height:1.2}.cart__up .u small{color:var(--ink-2);font-weight:600;display:block}
 .cart__up button{background:var(--ink);color:#fff;border:none;border-radius:999px;padding:.45rem .9rem;font-family:'Rubik';font-weight:700;font-size:.78rem;cursor:pointer;flex-shrink:0}
+.sp-toast{position:fixed;left:18px;bottom:18px;z-index:80;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(10,22,34,.18);padding:.7rem .85rem;display:flex;gap:.7rem;align-items:center;max-width:290px;transform:translateY(180%);transition:transform .5s cubic-bezier(.22,.61,.36,1),opacity .4s;opacity:0}
+.sp-toast.show{transform:none;opacity:1}
+.sp-toast img{width:42px;height:42px;object-fit:cover;border-radius:9px;background:var(--paper);flex-shrink:0}
+.sp-toast .t{font-size:.76rem;line-height:1.3}.sp-toast .t small{color:var(--ink-2);display:block;font-size:.66rem}
+.sp-toast .dot{width:8px;height:8px;border-radius:50%;background:#16a34a;flex-shrink:0;animation:pulse2 1.6s infinite}
+@keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+.hero__live{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);border-radius:999px;padding:.35rem .85rem;font-size:.78rem;font-weight:800;margin-bottom:.9rem}
+.hero__live .ld{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse2 1.6s infinite}
+@media(max-width:520px){.sp-toast{left:10px;right:10px;bottom:78px;max-width:none}}
 .combos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .combo{background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:1.5rem 1.3rem;text-align:center;transition:border-color .3s,transform .3s,box-shadow .3s}
 .combo:hover{border-color:var(--cyan);transform:translateY(-5px);box-shadow:var(--shadow)}
@@ -331,6 +340,7 @@ a{color:inherit;text-decoration:none}
   <div class="wrap hero__grid">
     <div>
       <div class="hero__rate"><span class="stars">★★★★★</span> 4,8/5 · +1.900 reseñas</div>
+      <div class="hero__live"><span class="ld"></span> +137 pedidos en las últimas 24h</div>
       <h1>El mini ventilador<br>que te hará decir <em>WTF.</em></h1>
       <p class="hero__sub">Tan pequeño que cabe en tu bolsillo. Tan potente que no te lo crees. Te salva del calor en la playa, el festival, la oficina o el bus a 40 grados.</p>
       <div class="hero__ctas"><a href="#oferta" class="btn btn-cta">Quiero el mío · 22,95€ →</a><a href="#modelos" class="btn btn-ghost">Ver modelos</a></div>
@@ -490,6 +500,8 @@ a{color:inherit;text-decoration:none}
   </div>
 </aside>
 
+<div class="sp-toast" id="spToast"></div>
+
 <!-- STICKY BUY -->
 <div class="stickybuy" id="sticky"><div class="wrap stickybuy__in">
   <div class="stickybuy__l"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp" alt="WhatTheFan"><div><b>WhatTheFan Turbo</b><small class="p">22,95€ <s>39,95€</s></small></div></div>
@@ -543,6 +555,10 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   });
 }
 let ct=2*3600+34*60+11;const pad=n=>String(n).padStart(2,'0');setInterval(()=>{if(ct<=0)ct=3*3600;ct--;const ch=document.getElementById('ch');if(!ch)return;document.getElementById('ch').textContent=pad(Math.floor(ct/3600));document.getElementById('cm').textContent=pad(Math.floor(ct%3600/60));document.getElementById('cs').textContent=pad(ct%60)},1000);
+var SP=[['Marcos','Valencia','WhatTheFan Flex','Sdfd39cb079384032b4c6d9a224888f5aL'],['Lucía','Madrid','WhatTheFan Ice','Sbb764e8095c64d73a357d16cd44137b7P'],['Dani','Sevilla','WhatTheFan Blast','S13d9991ea349431a88defa3ddb457d5bJ'],['Nerea','Barcelona','WhatTheFan Flex','Sdfd39cb079384032b4c6d9a224888f5aL'],['Javi','Málaga','WhatTheFan Tower','S238d093e8a8b4b6e9bc3416a5a790ec7x'],['Carla','Bilbao','WhatTheFan Mini','Sc691d9fc01ad44adac97fee86d5f18227'],['Pablo','Zaragoza','WhatTheFan Clip','Sd0db352f87794fb2b3882e738906acf61'],['Sara','Murcia','WhatTheFan Flex','Sdfd39cb079384032b4c6d9a224888f5aL']];
+var spi=Math.floor(Math.random()*SP.length);
+function showSP(){var t=document.getElementById('spToast');if(!t)return;var d=SP[spi%SP.length];spi++;var m=Math.floor(Math.random()*28)+2;t.innerHTML='<span class="dot"></span><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/'+d[3]+'.webp" alt=""><div class="t"><b>'+d[0]+' de '+d[1]+'</b> acaba de comprar<br><b>'+d[2]+'</b><small>hace '+m+' min · compra verificada</small></div>';t.classList.add('show');setTimeout(function(){t.classList.remove('show')},5000)}
+setTimeout(function(){showSP();setInterval(showSP,16000)},7000);
 </script>
 </body>
 </html>
