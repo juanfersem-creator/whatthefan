@@ -529,9 +529,9 @@ function renderCart(){
   wrap.innerHTML=cart.map(function(x,idx){return '<div class="citem"><img src="'+x.i+'" alt=""><div class="citem__b"><b>'+x.n+'</b><span class="cp">'+money(x.p)+'</span><div class="qty"><button onclick="chgQty('+idx+',-1)">−</button><span>'+x.q+'</span><button onclick="chgQty('+idx+',1)">+</button></div><br><button class="citem__rm" onclick="rmItem('+idx+')">Quitar</button></div></div>'}).join('');
   tot.textContent=money(cart.reduce(function(a,x){return a+x.p*x.q},0));
   var ship=document.getElementById('cartShip');
-  if(ship){if(count>=3){ship.innerHTML='Tienes <b>ENVIO GRATIS</b> conseguido';}else{var f=3-count;ship.innerHTML='Anade <b>'+f+'</b> mas y consigues <b>ENVIO GRATIS</b><span class="bar"><i style="width:'+Math.min(100,count/3*100)+'%"></i></span>';}}
+  if(ship){if(count>=3){ship.innerHTML='¡Tienes <b>ENVÍO GRATIS</b>! ';}else{var f=3-count;ship.innerHTML='Añade <b>'+f+'</b> más y consigues <b>ENVÍO GRATIS</b><span class="bar"><i style="width:'+Math.min(100,count/3*100)+'%"></i></span>';}}
   var up=document.getElementById('cartUp');
-  if(up){if(cart.find(function(x){return x.v==='54245765546323'})){up.style.display='none';}else{up.style.display='flex';up.innerHTML='<img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sc691d9fc01ad44adac97fee86d5f18227.webp"><div class="u">Le sumas el WTF Mini?<small>Solo 12,95 EUR - el regalo perfecto</small></div><button onclick="addMini()">Anadir</button>';}}
+  if(up){if(cart.find(function(x){return x.v==='54245765546323'})){up.style.display='none';}else{up.style.display='flex';up.innerHTML='<img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sc691d9fc01ad44adac97fee86d5f18227.webp"><div class="u">¿Le sumas el WTF Mini?<small>Solo 12,95€ · el regalo perfecto</small></div><button onclick="addMini()">Añadir</button>';}}
 }
 document.querySelectorAll('[data-add]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();addToCart(b.dataset.v,b.dataset.n,b.dataset.p,b.dataset.i,1)})});
 renderCart();
