@@ -100,6 +100,24 @@ a{color:inherit;text-decoration:none}
 .scroll-cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:2px;background:#fff;transform:translateX(-50%);animation:cue 1.7s ease-in-out infinite}
 @keyframes cue{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.drop{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a1622,#0d3a49 55%,#0891b2);color:#fff}
+.drop__in{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;padding:66px 0}
+.drop__badge{display:inline-block;background:var(--lime);color:var(--ink);font-family:'Rubik';font-weight:900;font-size:.7rem;letter-spacing:.14em;padding:.4rem .85rem;border-radius:999px;animation:badgePop 2.4s ease-in-out infinite}
+.drop h2{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:900;margin:1rem 0 .6rem}
+.drop h2 em{font-style:normal;color:var(--cyan)}
+.drop__p{opacity:.93;font-weight:500;max-width:46ch;margin-bottom:1.3rem}
+.drop__feats{display:flex;gap:.6rem;flex-wrap:wrap}
+.drop__feats span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:.35rem .8rem;border-radius:999px;font-size:.8rem;font-weight:700}
+.drop__sw{display:flex;gap:.55rem;align-items:center;margin:1.3rem 0 .2rem}
+.drop__sw b{font-size:.82rem;opacity:.85;font-weight:700}
+.drop__dot{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.55);box-shadow:0 4px 10px rgba(0,0,0,.3);transition:transform .2s}
+.drop__dot:hover{transform:scale(1.15)}
+.drop__media{position:relative;display:flex;justify-content:center;align-items:center}
+.drop__glow{position:absolute;width:72%;height:72%;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.6),transparent 70%);filter:blur(26px);z-index:0;animation:pulse2 3s ease-in-out infinite}
+.drop__media img{position:relative;z-index:2;width:100%;max-width:430px;border-radius:24px;box-shadow:0 40px 80px rgba(0,0,0,.45);animation:float 6s ease-in-out infinite}
+.drop__off{position:absolute;z-index:3;top:6%;right:6%;background:radial-gradient(circle at 34% 28%,#ff9a6e,var(--coral) 58%,var(--coral-d));color:#fff;font-family:'Rubik';font-weight:900;border-radius:50%;width:80px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(240,66,31,.5);animation:badgePop 2.4s ease-in-out infinite}
+.drop__off span:first-child{font-size:1.3rem;line-height:1}.drop__off span:last-child{font-size:.5rem;letter-spacing:.1em}
+@media(max-width:860px){.drop__in{grid-template-columns:1fr;text-align:center;padding:46px 0;gap:26px}.drop__feats,.drop__sw{justify-content:center}.drop__media{order:-1}.drop__media img{max-width:270px}}
 @media(max-width:860px){.hero__grid{grid-template-columns:1fr;text-align:center;padding:104px 0 60px}.hero__sub{margin-inline:auto}.hero__ctas,.hero__mini{justify-content:center}.hero__media{order:1;margin-top:1.7rem}.hero__card{max-width:230px;padding:12px}.hero__card img{border-radius:14px}.hero__shine{inset:12px;border-radius:14px}.badge{width:64px;height:64px;top:-12px;right:-6px}.badge span:first-child{font-size:1rem}.chip{font-size:.7rem;padding:.4rem .62rem}.chip.c1{left:0}.chip.c2{right:0}}
 
 /* TRUSTBAR */
@@ -371,10 +389,31 @@ a{color:inherit;text-decoration:none}
   <div class="trustbar__it"><b>+10.000</b><small>CLIENTES</small></div><div class="trustbar__it"><b>4,8/5</b><small>VALORACIÓN</small></div><div class="trustbar__it"><b>1800mAh</b><small>BATERÍA</small></div><div class="trustbar__it"><b>5</b><small>VELOCIDADES</small></div><div class="trustbar__it"><b>7-15 días</b><small>ENVÍO EU</small></div>
 </div></div>
 
+<!-- DROP: NECK -->
+<section class="drop">
+  <div class="wrap drop__in">
+    <div class="reveal">
+      <span class="drop__badge">✦ NUEVO LANZAMIENTO ✦</span>
+      <h2>Llega el <em>WTF Neck</em></h2>
+      <p class="drop__p">El ventilador de cuello <b>sin aspas</b> que te refresca con las <b>manos libres</b>. Te lo cuelgas y a olvidarte del calor: 5000mAh para todo el día, silencioso y con 5 velocidades. Playa, gym, paseo o curro.</p>
+      <div class="drop__feats"><span>Sin aspas · seguro</span><span>5000mAh</span><span>5 velocidades</span><span>Silencioso</span></div>
+      <div class="drop__sw"><b>Colores:</b><span class="drop__dot" style="background:#e9e9ee" title="Blanco"></span><span class="drop__dot" style="background:#f4bcd0" title="Rosa"></span><span class="drop__dot" style="background:#4fc3f7" title="Azul"></span><span class="drop__dot" style="background:#81c784" title="Verde"></span></div>
+      <div class="hero__ctas" style="margin-top:1.5rem"><a href="producto.html?p=neck" class="btn btn-cta">Descúbrelo · 27,95€ →</a><button class="btn btn-ghost add" data-add data-v="54398157422931" data-n="WhatTheFan Neck" data-p="27.95" data-i="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp">Añadir al carrito</button></div>
+    </div>
+    <div class="drop__media reveal">
+      <span class="drop__glow"></span>
+      <img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp" alt="WhatTheFan Neck — ventilador de cuello sin aspas">
+      <div class="drop__off"><span>-44%</span><span>HOY</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- MODELS -->
 <section class="sec" id="modelos"><div class="wrap">
   <div class="sec-head reveal"><span class="eyebrow">La familia WTF</span><h2>Elige tu ventilador</h2><p>El mismo aire bestia, en el formato que más te pega.</p></div>
   <div class="models">
+    <div class="model reveal tilt"><a href="producto.html?p=neck" class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp" alt="WhatTheFan Neck"></a><div class="model__b"><span class="tag" style="color:var(--coral)">★ Nuevo · Manos libres</span><h3>WTF Neck</h3><p class="mdesc">Sin aspas, se cuelga del cuello. 5000mAh · 5 vel.</p><p class="pr">27,95€ <s>49,95€</s></p><button class="add" data-add data-v="54398157422931" data-n="WhatTheFan Neck" data-p="27.95" data-i="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp">Añadir al carrito</button></div></div>
+    
     <div class="model reveal tilt"><a href="producto.html?p=flex" class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp" alt="WhatTheFan Flex"></a><div class="model__b"><span class="tag">3 en 1 · estrella</span><h3>WTF Flex</h3><p class="mdesc">Mano, cuello y mesa con soporte móvil.</p><p class="pr">22,95€ <s>39,95€</s></p><button class="add" data-add data-v="54210050654547" data-n="WhatTheFan Flex" data-p="22.95" data-i="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp">Añadir al carrito</button></div></div>
     <div class="model reveal tilt d1"><a href="producto.html?p=ice" class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sa01b2ad0f36b46b4a56d3c73f52e7683g.webp" alt="WhatTheFan Ice"></a><div class="model__b"><span class="tag">Enfría de verdad</span><h3>WTF Ice</h3><p class="mdesc">Placa fría + pantalla LED + 100 velocidades.</p><p class="pr">27,95€ <s>49,95€</s></p><button class="add" data-add data-v="54245765415251" data-n="WhatTheFan Ice" data-p="27.95" data-i="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sa01b2ad0f36b46b4a56d3c73f52e7683g.webp">Añadir al carrito</button></div></div>
     <div class="model reveal tilt d2"><a href="producto.html?p=blast" class="model__img"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S722a745d84484f45bead9b07db00346dn.webp" alt="WhatTheFan Blast"></a><div class="model__b"><span class="tag">El más potente</span><h3>WTF Blast</h3><p class="mdesc">Alta velocidad, chorro de aire bestia.</p><p class="pr">19,95€ <s>34,95€</s></p><button class="add" data-add data-v="54245767512403" data-n="WhatTheFan Blast" data-p="19.95" data-i="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S722a745d84484f45bead9b07db00346dn.webp">Añadir al carrito</button></div></div>
@@ -393,6 +432,8 @@ a{color:inherit;text-decoration:none}
     <div class="combo reveal"><span class="tag" style="background:#00AFF0;color:#fff">Pack OnlyFans</span><div class="combo__imgs"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp" alt="Flex"><span>+</span><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S8a5f4a2bb4de447ea32af7f43e63f9394.webp" alt="Mini"></div><h3>Flex + Mini</h3><p class="jk">Solo ventiladores, no seas mal pensado 😉</p><p class="cp"><b>35,90€</b> <s>62,90€</s></p><button class="add" style="background:linear-gradient(135deg,var(--coral),var(--coral-d))" onclick="addToCart('54210050654547','WhatTheFan Flex',22.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp');addToCart('54245765546323','WhatTheFan Mini',12.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S8a5f4a2bb4de447ea32af7f43e63f9394.webp')">Añadir pack</button></div>
     <div class="combo reveal d1"><span class="tag">Pack Bestia</span><div class="combo__imgs"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sa01b2ad0f36b46b4a56d3c73f52e7683g.webp" alt="Ice"><span>+</span><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S722a745d84484f45bead9b07db00346dn.webp" alt="Blast"></div><h3>Ice + Blast</h3><p class="cp"><b>47,90€</b> <s>84,90€</s></p><button class="add" style="background:linear-gradient(135deg,var(--coral),var(--coral-d))" onclick="addToCart('54245765415251','WhatTheFan Ice',27.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sa01b2ad0f36b46b4a56d3c73f52e7683g.webp');addToCart('54245767512403','WhatTheFan Blast',19.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S722a745d84484f45bead9b07db00346dn.webp')">Añadir pack</button></div>
     <div class="combo reveal d2"><span class="tag">Pack Casa</span><div class="combo__imgs"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/See0395c90275491b958c1873c083a571C.webp" alt="Clip"><span>+</span><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S0a49d1d8a6dc452789f9da5c938435d30.webp" alt="Power"></div><h3>Clip + Power</h3><p class="cp"><b>38,90€</b> <s>68,90€</s></p><button class="add" style="background:linear-gradient(135deg,var(--coral),var(--coral-d))" onclick="addToCart('54245763154259','WhatTheFan Clip',21.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/See0395c90275491b958c1873c083a571C.webp');addToCart('54245765218643','WhatTheFan Power',16.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S0a49d1d8a6dc452789f9da5c938435d30.webp')">Añadir pack</button></div>
+    <div class="combo reveal d3"><span class="tag" style="background:var(--coral);color:#fff">Pack Manos Libres</span><div class="combo__imgs"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp" alt="Neck"><span>+</span><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S8a5f4a2bb4de447ea32af7f43e63f9394.webp" alt="Mini"></div><h3>Neck + Mini</h3><p class="cp"><b>40,90€</b> <s>72,90€</s></p><button class="add" style="background:linear-gradient(135deg,var(--coral),var(--coral-d))" onclick="addToCart('54398157422931','WhatTheFan Neck',27.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp');addToCart('54245765546323','WhatTheFan Mini',12.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S8a5f4a2bb4de447ea32af7f43e63f9394.webp')">Añadir pack</button></div>
+    <div class="combo reveal"><span class="tag">Pack Verano Total</span><div class="combo__imgs"><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp" alt="Neck"><span>+</span><img src="https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp" alt="Flex"></div><h3>Neck + Flex</h3><p class="cp"><b>50,90€</b> <s>89,90€</s></p><button class="add" style="background:linear-gradient(135deg,var(--coral),var(--coral-d))" onclick="addToCart('54398157422931','WhatTheFan Neck',27.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/Sfd35f4ff5d8b46aea59071775c510ee6d.webp');addToCart('54210050654547','WhatTheFan Flex',22.95,'https://cdn.shopify.com/s/files/1/1071/1659/3491/files/S82e453781d5f498d9ac7f4bb07a017a3W.webp')">Añadir pack</button></div>
   </div>
 </div></section>
 
